@@ -1,0 +1,1 @@
+Simple Wordle con HTML, Sass y Vanilla JS.
