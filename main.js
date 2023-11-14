@@ -5198,24 +5198,20 @@ const words = [
 const botonCheckearPalabra = document.querySelector("#boton_palabra");
 const indiceAleatorio = Math.floor(Math.random() * words.length);
 let palabraAdivinar = words[indiceAleatorio];
-console.log(palabraAdivinar);
 let intento = 0;
 
-//HACIENDO INTRO EN EL NAVEGADOR
-// document.addEventListener('keydown', function(event) {
-//     if (event.key === "Enter") {
-//         const inputPalabraUser = document.querySelector("#input_palabra").value;
-//         //Comprobamos si la palabra es válida
-//         if (inputPalabraUser.length === 5 && intento < 5){
-//             console.log(intento);
-//             intento = escribirBloques(inputPalabraUser);
-//         } else if (intento === 5){
-//             alert("Has perdido"); //Modificable
-//         } else if (inputPalabraUser != 5){
-//             alert("Escribe una palabra de 5 letras"); //MODIFICABLE
-//         }
-//         }
-//   });
+// HACIENDO INTRO EN EL NAVEGADOR
+document.addEventListener('keydown', function(event) {
+    if (event.key === "Enter") {
+        const inputPalabraUser = document.querySelector("#input_palabra").value.toLowerCase();
+        //Comprobamos si la palabra es válida y al usuario le quedan intentos
+        if (words.includes(inputPalabraUser) && intento < 5){
+            escribirBloques(inputPalabraUser);
+        } else if (!words.includes(inputPalabraUser)){
+            alert("Escribe una palabra del abecedario"); //MODIFICABLE
+        }
+        }
+  });
 
 //LO UTILIZAMOS PARA LA ANIMACIÓN DE REVELAR LETRAS
 function pausa(ms) {
@@ -5226,7 +5222,7 @@ function pausa(ms) {
 
 //CLICKANDO EL BOTÓN
 botonCheckearPalabra.addEventListener('click', function(){
-    const inputPalabraUser = document.querySelector("#input_palabra").value;
+    const inputPalabraUser = document.querySelector("#input_palabra").value.toLowerCase();
     //Comprobamos si la palabra es válida y al usuario le quedan intentos
     if (words.includes(inputPalabraUser) && intento < 5){
         escribirBloques(inputPalabraUser);
@@ -5309,4 +5305,3 @@ function pasarPalabraaArray(palabraAdivinar){
     return letrasEncontradas;
 }
 
-//"ALOR" "LARA"  VERDE NARANJA NARANJA NEGRO NEGRO
